@@ -1,4 +1,4 @@
-package com.ibrohimapk3.trafficservice
+package com.ibrohimapk3.trafficservice.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,7 +14,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -26,18 +26,28 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ibrohimapk3.trafficservice.R
+import com.ibrohimapk3.trafficservice.screen.component.AutomobileScreen
+import com.ibrohimapk3.trafficservice.screen.component.EditAutomobile
+import com.ibrohimapk3.trafficservice.screen.component.SegmentControl
+import com.ibrohimapk3.trafficservice.screen.component.Tariffs
 import com.ibrohimapk3.trafficservice.ui.theme.Blue
 import com.ibrohimapk3.trafficservice.ui.theme.Grey
 
 @Composable
-fun ServiceScreen(modifier: Modifier = Modifier) {
-    var selectedIndex by remember { mutableIntStateOf(0) }
+fun ServiceScreen(
+    modifier: Modifier,
+    navigate: () -> Unit,
+    viewModel: ServiceViewModel = viewModel()
+) {
+    val selectedIndex by viewModel.selectedIndex.collectAsState()
+
     var checkValueForTopbar by remember { mutableIntStateOf(0) }
     var editState by remember { mutableStateOf(false) }
-    LaunchedEffect(selectedIndex) {
-        if (selectedIndex == 1) checkValueForTopbar = R.drawable.icon_edit
-        else checkValueForTopbar = 0
-    }
+
+    checkValueForTopbar = if (selectedIndex == 1) R.drawable.icon_edit else 0
+
     Column(
         modifier
             .fillMaxSize()
@@ -49,16 +59,17 @@ fun ServiceScreen(modifier: Modifier = Modifier) {
             iconId2 = checkValueForTopbar,
             onValueChange = {
                 editState = it
-            })
+            }
+        )
         SegmentControl(selectedIndex, onValueChange = {
-            selectedIndex = it
+            viewModel.changeIndex(it)
         })
         when (selectedIndex) {
             0 -> Tariffs()
-            else ->{
+            else -> {
                 when (editState) {
-                    true -> EditAutomobile()
-                    else -> AutomobileScreen(modifier)
+                    true -> EditAutomobile(modifier, true, navigate)
+                    else -> AutomobileScreen(modifier, false, navigate)
                 }
             }
         }

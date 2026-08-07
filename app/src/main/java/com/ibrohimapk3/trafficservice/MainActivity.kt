@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.ibrohimapk3.trafficservice.navigation.MyNavController
 import com.ibrohimapk3.trafficservice.ui.theme.TrafficServiceTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             TrafficServiceTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ServiceScreen(
+                    MyNavController(
                         modifier = Modifier
                             .padding(top = innerPadding.calculateTopPadding())
                             .background(Color.White)

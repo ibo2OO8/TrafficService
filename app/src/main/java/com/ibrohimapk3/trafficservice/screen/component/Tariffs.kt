@@ -1,4 +1,4 @@
-package com.ibrohimapk3.trafficservice
+package com.ibrohimapk3.trafficservice.screen.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -31,6 +31,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ibrohimapk3.trafficservice.R
+import com.ibrohimapk3.trafficservice.screen.GreySpace
 import com.ibrohimapk3.trafficservice.ui.theme.Blue
 import com.ibrohimapk3.trafficservice.ui.theme.Grey
 
@@ -132,6 +134,7 @@ fun TariffsContent(text: String, id: Int) {
         Text(text = text, modifier = Modifier.padding(start = 12.dp))
     }
 }
+
 @Composable
 fun SegmentControl(selectedIndex: Int, onValueChange: (Int) -> Unit) {
     SingleChoiceSegmentedButtonRow(
