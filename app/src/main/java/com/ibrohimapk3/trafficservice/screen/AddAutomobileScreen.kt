@@ -212,10 +212,13 @@ fun DropdownMenuBox(text: String, list: List<String>) {
         ExposedDropdownMenu(
             expanded = expanded, onDismissRequest = { expanded = false }) {
             list.forEach { brand ->
-                DropdownMenuItem(text = { Text(brand) }, onClick = {
-                    selected = brand
-                    expanded = false
-                })
+                DropdownMenuItem(
+                    text = { Text(brand) },
+                    onClick = {
+                        selected = brand
+                        expanded = false
+                    }
+                )
             }
         }
     }
