@@ -139,7 +139,7 @@ fun TariffsContent(text: String, id: Int) {
 fun SegmentControl(selectedIndex: Int, onValueChange: (Int) -> Unit) {
     SingleChoiceSegmentedButtonRow(
         modifier = Modifier
-            .padding(start = 12.dp, end = 12.dp)
+            .padding(start = 12.dp, end = 12.dp, top = 10.dp)
             .fillMaxWidth()
             .height(39.dp)
             .background(color = Grey, shape = RoundedCornerShape(8.dp))

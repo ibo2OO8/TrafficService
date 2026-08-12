@@ -24,6 +24,7 @@ fun EditAutomobile(modifier: Modifier = Modifier, deleteOrEditIcon: Boolean, nav
         modifier
             .fillMaxSize()
             .padding(vertical = 2.dp)
+            .padding()
     ) {
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
             items(listCar) {

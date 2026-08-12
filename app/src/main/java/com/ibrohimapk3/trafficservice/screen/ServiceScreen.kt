@@ -69,7 +69,7 @@ fun ServiceScreen(
             else -> {
                 when (editState) {
                     true -> EditAutomobile(modifier, true, navigate)
-                    else -> AutomobileScreen(modifier, false, navigate)
+                    else -> AutomobileScreen(false, navigate)
                 }
             }
         }
@@ -95,8 +95,8 @@ fun ActionBar(text: String, iconId: Int = 0, iconId2: Int = 0, onValueChange: (B
                 contentDescription = "back",
                 tint = Color.Unspecified,
                 modifier = Modifier
-                    .width(20.dp)
-                    .height(28.dp)
+                    .width(11.dp)
+                    .height(20.dp)
             )
         }
         Text(

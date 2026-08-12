@@ -165,8 +165,8 @@ fun ActionBarForAddAutomobile(
                 contentDescription = "back",
                 tint = Color.Unspecified,
                 modifier = Modifier
-                    .width(20.dp)
-                    .height(28.dp)
+                    .width(11.dp)
+                    .height(20.dp)
             )
         }
         Text(

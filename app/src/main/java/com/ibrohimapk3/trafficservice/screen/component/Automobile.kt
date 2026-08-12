@@ -37,19 +37,18 @@ import com.ibrohimapk3.trafficservice.ui.theme.GreyIconColor
 import com.ibrohimapk3.trafficservice.ui.theme.IconPlusColor
 
 var listCar = mutableListOf(
-    Car(model = "bmw m3", color = "серый", number = "5595MU17", yearOfManufacture = 2008)
+    Car(model = "bmw m3", color = "серый", number = "5595UI03", yearOfManufacture = 2008)
 )
 
 data class Car(var model: String, var color: String, var number: String, var yearOfManufacture: Int)
 
 @Composable
 fun AutomobileScreen(
-    modifier: Modifier = Modifier,
     deleteOrEditIcon: Boolean,
     navigate: () -> Unit
 ) {
     Column(
-        modifier
+        modifier = Modifier
             .fillMaxSize()
             .padding(vertical = 2.dp)
     ) {
@@ -118,7 +117,7 @@ fun CarItem(
             IconButton(
                 onClick = {
                 }, modifier = Modifier
-                    .size(18.dp)
+                    .size(24.dp)
             ) {
                 Icon(
                     painter = painterResource(R.drawable.icon_delete),
