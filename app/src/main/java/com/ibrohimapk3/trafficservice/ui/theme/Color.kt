@@ -12,7 +12,7 @@ val Pink40 = Color(0xFF7D5260)
 
 val Grey = Color(0x24969CA4)
 val GreyIconColor = Color(0x521F2022)
-val IconPlusColor = Color(0x521F2022)
+val IconPlusColor = Color(0x0F333434)
 
 val Blue = Color(0xFF2673E8)
 

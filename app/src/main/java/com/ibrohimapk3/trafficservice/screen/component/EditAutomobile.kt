@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,9 +20,10 @@ import com.ibrohimapk3.trafficservice.screen.GreySpace
 import com.ibrohimapk3.trafficservice.ui.theme.Blue
 
 @Composable
-fun EditAutomobile(modifier: Modifier = Modifier, deleteOrEditIcon: Boolean, navigate: () -> Unit) {
+fun EditAutomobile(deleteOrEditIcon: Boolean, navigate: () -> Unit) {
     Column(
-        modifier
+        modifier = Modifier
+            .padding(top = 8.dp)
             .fillMaxSize()
             .padding(vertical = 2.dp)
             .padding()
@@ -44,7 +46,9 @@ fun EditAutomobile(modifier: Modifier = Modifier, deleteOrEditIcon: Boolean, nav
         Button(
             modifier = Modifier
                 .padding(bottom = 42.dp, start = 16.dp, end = 16.dp)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .height(56.dp)
+            ,
             colors = ButtonDefaults.buttonColors(containerColor = Blue),
             shape = RoundedCornerShape(16.dp),
             onClick = {}

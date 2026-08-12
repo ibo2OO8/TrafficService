@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ibrohimapk3.trafficservice.R
 import com.ibrohimapk3.trafficservice.screen.component.AutomobileScreen
@@ -68,7 +69,7 @@ fun ServiceScreen(
             0 -> Tariffs()
             else -> {
                 when (editState) {
-                    true -> EditAutomobile(modifier, true, navigate)
+                    true -> EditAutomobile(true, navigate)
                     else -> AutomobileScreen(false, navigate)
                 }
             }
@@ -100,7 +101,10 @@ fun ActionBar(text: String, iconId: Int = 0, iconId2: Int = 0, onValueChange: (B
             )
         }
         Text(
-            text = text, fontWeight = FontWeight(500), modifier = Modifier.align(Alignment.Center)
+            text = text,
+            fontWeight = FontWeight(500),
+            modifier = Modifier.align(Alignment.Center),
+            fontSize = 18.sp
         )
         if (iconId2 != 0) {
             if (!cancelState) {
@@ -124,7 +128,7 @@ fun ActionBar(text: String, iconId: Int = 0, iconId2: Int = 0, onValueChange: (B
             } else {
                 Text(
                     text = "Отменить", modifier = Modifier
-                        .padding(end = 12.dp)
+                        .padding(end = 16.dp)
                         .align(Alignment.CenterEnd)
                         .clickable {
                             onValueChange(false)
@@ -144,7 +148,7 @@ fun GreySpace() {
         modifier = Modifier
             .padding(horizontal = 12.dp)
             .fillMaxWidth()
-            .height(2.dp)
+            .height(0.5.dp)
             .background(Grey)
     )
 }

@@ -1,6 +1,7 @@
 package com.ibrohimapk3.trafficservice.screen.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,11 +14,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.RadioButton
-import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -33,6 +35,7 @@ import androidx.compose.ui.unit.sp
 import com.ibrohimapk3.trafficservice.R
 import com.ibrohimapk3.trafficservice.screen.GreySpace
 import com.ibrohimapk3.trafficservice.ui.theme.Blue
+import com.ibrohimapk3.trafficservice.ui.theme.Grey
 import com.ibrohimapk3.trafficservice.ui.theme.GreyIconColor
 import com.ibrohimapk3.trafficservice.ui.theme.IconPlusColor
 
@@ -44,11 +47,11 @@ data class Car(var model: String, var color: String, var number: String, var yea
 
 @Composable
 fun AutomobileScreen(
-    deleteOrEditIcon: Boolean,
-    navigate: () -> Unit
+    deleteOrEditIcon: Boolean, navigate: () -> Unit
 ) {
     Column(
         modifier = Modifier
+            .padding(top = 8.dp)
             .fillMaxSize()
             .padding(vertical = 2.dp)
     ) {
@@ -83,8 +86,8 @@ fun CarItem(
     ) {
         Box(
             modifier = Modifier
-                .width(30.dp)
-                .height(30.dp)
+                .width(28.dp)
+                .height(28.dp)
                 .background(GreyIconColor, shape = RoundedCornerShape(100))
         ) {
             Icon(
@@ -92,8 +95,8 @@ fun CarItem(
                 contentDescription = "edit",
                 tint = Color.Unspecified,
                 modifier = Modifier
-                    .width(27.dp)
-                    .height(27.dp)
+                    .width(17.dp)
+                    .height(14.dp)
                     .align(Alignment.Center)
             )
         }
@@ -106,18 +109,12 @@ fun CarItem(
             Text(text = "$number $yearOfManufacture", fontSize = 16.sp)
         }
         if (!deleteOrEditIcon) {
-            RadioButton(
-                selected = selected, colors = RadioButtonDefaults.colors(
-                    selectedColor = Blue
-                ), onClick = {
-                    selected = !selected
-                }, modifier = Modifier.size(14.dp)
-            )
+
+            MyRadioButton(selected, changeValue = { value -> selected = value })
+
         } else {
             IconButton(
-                onClick = {
-                }, modifier = Modifier
-                    .size(24.dp)
+                onClick = {}, modifier = Modifier.size(24.dp)
             ) {
                 Icon(
                     painter = painterResource(R.drawable.icon_delete),
@@ -153,7 +150,7 @@ fun AddCarItem(navigate: () -> Unit) {
         ) {
             Icon(
                 painter = painterResource(R.drawable.icon_plus),
-                contentDescription = "edit",
+                contentDescription = "add",
                 tint = Color.Unspecified,
                 modifier = Modifier
                     .width(12.dp)
@@ -176,5 +173,33 @@ fun AddCarItem(navigate: () -> Unit) {
                 .width(6.dp)
                 .height(11.dp)
         )
+    }
+}
+
+@Composable
+fun MyRadioButton(selected: Boolean, changeValue: (Boolean) -> Unit) {
+    Box(
+        modifier = Modifier
+            .size(22.dp)
+            .clip(CircleShape)
+            .border(
+                width = 2.dp,
+                color = if (selected) Blue
+                else GreyIconColor,
+                shape = CircleShape
+            )
+            .clickable() {
+                changeValue(!selected)
+            },
+    ) {
+        Box(
+            modifier = Modifier
+                .size(14.dp)
+                .background(
+                    color = if (selected) Blue
+                    else Color.White, shape = RoundedCornerShape(100)
+                )
+                .align(Alignment.Center)
+        ) {}
     }
 }

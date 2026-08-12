@@ -78,8 +78,7 @@ fun AddAutomobileScreen(modifier: Modifier, onBack: () -> Unit) {
                     unfocusedContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
-
-                    ),
+                ),
                 value = yearState,
                 onValueChange = {
                     yearState = it
@@ -124,14 +123,16 @@ fun AddAutomobileScreen(modifier: Modifier, onBack: () -> Unit) {
             }
             Text(
                 text = "Формат: 0000XX00",
-                fontSize = 14.sp,
+                fontSize = 13.sp,
+                fontWeight = FontWeight(400),
                 modifier = Modifier.padding(start = 16.5.dp)
             )
             Spacer(Modifier.weight(1f))
             Button(
                 modifier = Modifier
                     .padding(bottom = 42.dp, start = 16.dp, end = 16.dp)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .height(56.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Blue),
                 shape = RoundedCornerShape(16.dp),
                 onClick = {}
@@ -146,6 +147,7 @@ fun AddAutomobileScreen(modifier: Modifier, onBack: () -> Unit) {
 fun ActionBarForAddAutomobile(
     onBack: () -> Unit
 ) {
+    var btnEnabled by remember { mutableStateOf(true) }
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -154,8 +156,10 @@ fun ActionBarForAddAutomobile(
             .padding(top = 8.dp),
     ) {
         IconButton(
+            enabled = btnEnabled,
             onClick = {
                 onBack()
+                btnEnabled = false
             }, modifier = Modifier
                 .size(44.dp)
                 .align(Alignment.CenterStart)
@@ -207,7 +211,12 @@ fun DropdownMenuBox(text: String, list: List<String>) {
             readOnly = true,
             placeholder = { Text(text = text) },
             trailingIcon = {
-                ExposedDropdownMenuDefaults.TrailingIcon(expanded)
+                Icon(
+                    painter = painterResource(R.drawable.icon_arrow_bottom),
+                    contentDescription = "arrow",
+                    tint = Color.Black,
+                    modifier = Modifier
+                )
             })
         ExposedDropdownMenu(
             expanded = expanded, onDismissRequest = { expanded = false }) {
